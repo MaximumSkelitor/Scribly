@@ -1,5 +1,4 @@
 import com.android.build.api.variant.impl.VariantOutputImpl
-import org.gradle.kotlin.dsl.assign
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -17,7 +16,7 @@ plugins {
 val vMajor = 1
 val vMinor = 0
 val vPatch = 0
-val isAlpha = true
+val isAlpha = false
 
 android {
     namespace = "com.weberpackage.scribly"

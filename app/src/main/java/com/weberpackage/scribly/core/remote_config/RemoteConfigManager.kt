@@ -14,12 +14,11 @@ class RemoteConfigManager @Inject constructor() {
 
     init {
         val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) 0 else 3600 // 1 hour for prod
+            minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) 0 else 3600
         }
         remoteConfig.setConfigSettingsAsync(configSettings)
         remoteConfig.setDefaultsAsync(mapOf(
-            MIN_VERSION_KEY to 1,
-            FORCE_UPDATE_ENABLED_KEY to false
+            UPDATE_CONFIG_KEY to "[]"
         ))
     }
 
@@ -30,18 +29,9 @@ class RemoteConfigManager @Inject constructor() {
             }
     }
 
-    fun getMinVersion(): Int = remoteConfig.getLong(MIN_VERSION_KEY).toInt()
-
-    fun isForceUpdateEnabled(): Boolean = remoteConfig.getBoolean(FORCE_UPDATE_ENABLED_KEY)
-
-    fun isUpdateRequired(): Boolean {
-        val currentVersion = BuildConfig.VERSION_CODE
-        val minVersion = getMinVersion()
-        return isForceUpdateEnabled() && currentVersion < minVersion
-    }
+    fun getUpdateConfigJson(): String = remoteConfig.getString(UPDATE_CONFIG_KEY)
 
     companion object {
-        private const val MIN_VERSION_KEY = "min_version"
-        private const val FORCE_UPDATE_ENABLED_KEY = "force_update_enabled"
+        const val UPDATE_CONFIG_KEY = "app_update_config"
     }
 }

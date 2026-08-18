@@ -1,6 +1,6 @@
-package com.weberpackage.blackjack.common.data.repo
+package com.weberpackage.scribly.common.data.repo
 
-import com.weberpackage.blackjack.core.utils.AppUpdateConfigData
+import com.weberpackage.scribly.core.utils.AppUpdateConfigData
 
 interface RemoteConfigRepository {
     suspend fun fetchAppUpdateConfig(): AppUpdateConfigData?

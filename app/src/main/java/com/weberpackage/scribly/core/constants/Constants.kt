@@ -1,6 +1,5 @@
-package com.weberpackage.blackjack.core.constants
+package com.weberpackage.scribly.core.constants
 
 object Constants {
-    const val GITHUB_RELEASE_LINK: String = "https://github.com/MaximumSkelitor/BlackJack/releases"
-    const val ACTION_ADD_CREDITS: String = "com.weberpackage.blackjack.ADD_CREDITS"
+    const val GITHUB_RELEASE_LINK: String = "https://github.com/MaximumSkelitor/Scribly/releases"
 }

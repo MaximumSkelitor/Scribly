@@ -15,3 +15,5 @@
 local.properties
 .artifacts
 app/google-services.json
+sentry.properties
+app/sentry.properties

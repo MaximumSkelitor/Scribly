@@ -1,19 +1,20 @@
-package com.weberpackage.blackjack.core.utils
+package com.weberpackage.scribly.core.utils
 
 import android.app.Activity
 import android.content.Intent
 import androidx.activity.ComponentActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
-import com.weberpackage.blackjack.R
-import com.weberpackage.blackjack.common.data.repo.RemoteConfigRepository
-import com.weberpackage.blackjack.common.presentation.utils.DialogAction
-import com.weberpackage.blackjack.common.presentation.utils.DialogController
-import com.weberpackage.blackjack.common.presentation.utils.DialogEvent
-import com.weberpackage.blackjack.common.presentation.utils.UiText
-import com.weberpackage.blackjack.core.constants.Constants
-import com.weberpackage.blackjack.core.prefs.Pref
-import com.weberpackage.blackjack.core.prefs.Prefs
+import com.weberpackage.scribly.BuildConfig
+import com.weberpackage.scribly.R
+import com.weberpackage.scribly.common.data.repo.RemoteConfigRepository
+import com.weberpackage.scribly.common.presentation.utils.DialogAction
+import com.weberpackage.scribly.common.presentation.utils.DialogController
+import com.weberpackage.scribly.common.presentation.utils.DialogEvent
+import com.weberpackage.scribly.common.presentation.utils.UiText
+import com.weberpackage.scribly.core.constants.Constants
+import com.weberpackage.scribly.core.prefs.Pref
+import com.weberpackage.scribly.core.prefs.Prefs
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
@@ -25,7 +26,14 @@ class UpdateManager @Inject constructor(
     private var currentUpdate: AppUpdateConfigData? = null
 
     suspend fun checkForUpdate(activity: ComponentActivity) {
+        android.util.Log.d("UpdateManager", "Checking for updates...")
         remoteConfigRepository.fetchAppUpdateConfig()?.also { config ->
+            android.util.Log.d("UpdateManager", "Config received: version=${config.appVersionCode}, type=${config.type}")
+            if (BuildConfig.VERSION_CODE >= config.appVersionCode) {
+                android.util.Log.d("UpdateManager", "App is up to date (Current: ${BuildConfig.VERSION_CODE})")
+                return@also
+            }
+            
             currentUpdate = config
             when (config.type) {
                 UpdateType.IMMEDIATE -> {
@@ -52,7 +60,7 @@ class UpdateManager @Inject constructor(
                 }
 
                 UpdateType.FLEXIBLE -> {
-                    if (prefs.get(Pref.updatePostponeTime) < System.currentTimeMillis()) {
+                    if (prefs.get(Pref.UpdatePostponeTime) < System.currentTimeMillis()) {
                         DialogController.sendEvent(
                             event = DialogEvent(
                                 title = UiText(
@@ -87,7 +95,7 @@ class UpdateManager @Inject constructor(
     private fun postponeUpdate() {
         val delay = 24 * 60 * 60 * 1000 // 24 hours
         val postponedTime = System.currentTimeMillis() + delay
-        prefs.set(Pref.updatePostponeTime, postponedTime)
+        prefs.set(Pref.UpdatePostponeTime, postponedTime)
     }
 
     private fun openGithubLink(activity: Activity) {

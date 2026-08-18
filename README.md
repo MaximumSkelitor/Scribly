@@ -1,4 +1,4 @@
-# ![Dashboard](app/src/main/res/drawable/ic_scribly_logo.xml) Scribly Android
+# Scribly Android
 ## A premium, native Android application for tracking your subscriptions.
 
 ### Introduction
@@ -11,10 +11,9 @@ I created this project to explore the latest capabilities of the Android ecosyst
 
 ## Screenshots
 
-|                      Home Page                      |                        List                         |                        Stats                         | Add Subscription                                                |
-|:---------------------------------------------------:|:---------------------------------------------------:|:----------------------------------------------------:|:----------------------------------------------------------------|
+|                      Home Page                      |                        List                         |                        Stats                         |                        Add Subscription                         |
+|:---------------------------------------------------:|:---------------------------------------------------:|:----------------------------------------------------:|:---------------------------------------------------------------:|
 | <img src="docs/screenshots/home.png" width="200" /> | <img src="docs/screenshots/list.png" width="200" /> | <img src="docs/screenshots/stats.png" width="200" /> | <img src="docs/screenshots/add_subscription.png" width="200" /> |
-
 
 ### Credits
 This app was made possible thanks to the following open-source projects and libraries:

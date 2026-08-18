@@ -13,4 +13,5 @@ sealed class Pref<T>(val key: String, val defaultValue: T) {
     data object WeeklyDigestEnabled : Pref<Boolean>("weekly_digest_enabled", false)
     data object BiometricLockEnabled : Pref<Boolean>("biometric_lock_enabled", false)
     data object CalendarSyncEnabled : Pref<Boolean>("calendar_sync_enabled", false)
+    data object UpdatePostponeTime : Pref<Long>("pref_update_postpone_time", 0L)
 }

@@ -22,7 +22,13 @@ class MainViewModel @Inject constructor(
 
     override fun setInitialState() = MainContract.State()
 
-    override fun handleEvents(event: MainContract.Event) {}
+    override fun handleEvents(event: MainContract.Event) {
+        when (event) {
+            MainContract.Event.OnCheckForUpdates -> {
+                setEffect { MainContract.Effect.CheckForAppUpdates }
+            }
+        }
+    }
 
     private fun observeTheme() {
         viewModelScope.launch {

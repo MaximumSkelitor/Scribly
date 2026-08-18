@@ -175,4 +175,12 @@
     <string name="sort_price_high">Price (High to Low)</string>
     <string name="sort_date_soon">Date (Soonest)</string>
     <string name="sort_date_far">Date (Furthest)</string>
+
+    <string name="dialog_firebase_failed_title">Firebase Error</string>
+    <string name="dialog_firebase_failed_message">This app requires a connection to Firebase for server and feature support configuration as well as app updates. The app will use the default configurations, for proper operation please check if Firebase is being blocked by ad blockers like PiHole, AdGuard etc</string>
+    <string name="inapp_update_available_title">Update Available</string>
+    <string name="inapp_update_available_message_flexible">A new app version is available that may include new features and or bug fixes. Please update at your earliest convenience.</string>
+    <string name="inapp_update_available_message_immediate">A critical update is available and is required for continued use. Please update ASAP</string>
+    <string name="update">Update</string>
+    <string name="postpone">Postpone</string>
 </resources>
